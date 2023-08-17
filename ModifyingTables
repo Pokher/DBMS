@@ -1,0 +1,35 @@
+Create table Employee
+(Empno int, ename varchar(30), job varchar(20), salary number(10,2)
+);
+Alter table Employee
+ADD Commission int;
+Insert into Employee(Empno,ename,job,salary,commission)
+values('1','Rajesh','technician',10000,100);
+Insert into Employee(Empno,ename,job,salary,commission)
+values('2','Jaggu','electrician',30000,50);
+Insert into Employee(Empno,ename,job,salary,commission)
+values('3','Rohan','engineer',25000,25);
+Insert into Employee(Empno,ename,job,salary,commission)
+values('4','Vikas','musician',30999,43);
+Insert into Employee(Empno,ename,job,salary,commission)
+values('5','Vinod','scientist',19869,79);
+Insert into Employee(Empno,ename,job,salary,commission)
+values('6','Suresh','artist',50000,91);
+Insert into Employee(Empno,ename,job,salary,commission)
+values('7','Mohit','architecture',20000,69);
+Insert into Employee(Empno,ename,job,salary,commission)
+values('8','Raju','developer',30200,99);
+Alter Table Employee
+RENAME column ename to EmployeeName
+Delete from Employee where empno='5';
+
+
+
+
+
+insert into  customer values('1','Alfreds ','Maria Anders ','Obere Srt. 57 ','Berlin ','12209 ','Germany ');
+insert into customer values('2','Ana Trujillo ','Ana Trujillo ','Avda. de la 2222 ','Mexico D.F.','05021 ','Mexico ');
+insert into customer values('3','Antonio Moreno','Antonio Moreno ','Mataderos 2312 ','Mexico D.F.','05023 ','Mexico ');
+insert into customer values('4','Around the horn','Thomas Hardy ','120 Hanover Sq.','London.','WA1 !DP ','UK ');
+insert into customer values('5','Bergland','Christina ','Bergu','Lule','S-958 22 ','Sweden ');
+
