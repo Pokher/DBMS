@@ -1,0 +1,34 @@
+
+create table client_master(
+Client_no  varchar(6) primary key check(Client_no like 'C%'),
+name  varchar(20) not null,address1 varchar(30),address2  varchar(30),
+City  varchar(30),pincode number(8),state varchar(30),baldue number(10,2));
+
+
+Create table salesman_master
+(
+Salesmanno varchar(6)primary key check(Salesmanno like 'S%'),
+salesmanname varchar(20) not null,
+address1 varchar(30)not null,
+address2 varchar(30),
+city varchar(20),
+pincode number(8),
+state varchar(20),
+salamt number(8,2)not null,
+tgttoget number(6,2)not null,
+ytdsales number( 6,2)not null,
+remarks varchar(60) 
+);
+
+Create table sales_order
+(
+Orderno varchar(6)primary key check(Orderno like 'O%'),
+clientno varchar(6), foreign key(clientno) references client_master(Client_no),
+orderdate date not null,
+delyaddr varchar(25),
+salesmanno varchar(6), foreign key(salesmanno) references salesman_master(Salesmanno),
+delytype char(1) check(delytype in('P','F')),
+billyn char(1),
+delydate date,
+orderstatus varchar(10) check(orderstatus in('In Process','Fulfilled','BackOne'))
+);
