@@ -32,3 +32,38 @@ billyn char(1),
 delydate date,
 orderstatus varchar(10) check(orderstatus in('In Process','Fulfilled','BackOne'))
 );
+SalesmanNo
+
+Name
+
+Address1
+
+Address2
+
+500001
+
+Aman
+
+A/14
+
+Worli
+
+S00002
+
+Omkar
+
+65
+
+Nariman
+
+S00003 S00004
+
+Raj P-7 Ashish
+
+Bandra Juhu
+
+A/5
+
+City
+
+PinCode
