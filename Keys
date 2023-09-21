@@ -20,50 +20,124 @@ ytdsales number( 6,2)not null,
 remarks varchar(60) 
 );
 
-Create table sales_order
+create table sales_order
 (
-Orderno varchar(6)primary key check(Orderno like 'O%'),
-clientno varchar(6), foreign key(clientno) references client_master(Client_no),
-orderdate date not null,
-delyaddr varchar(25),
-salesmanno varchar(6), foreign key(salesmanno) references salesman_master(Salesmanno),
-delytype char(1) check(delytype in('P','F')),
-billyn char(1),
-delydate date,
-orderstatus varchar(10) check(orderstatus in('In Process','Fulfilled','BackOne'))
-);
-SalesmanNo
+Orderno VARCHAR(6) primary key check(orderno like'O%'),
+clientno VARCHAR(6),
+orderdate Date not null,
+salesmanno VARCHAR(6),
+delytype Char(1) check(delytype in('P','F')),
+billyn Char(1),
+delydate Date,
+orderstatus VARCHAR(10) check( orderstatus  in('in process','fulfilled')),
+foreign key(clientno) references client_master(client_no),
+foreign key(salesmanno) references salesman_master(SALESMANNO));
 
-Name
+insert into sales_order values{'O19001','C00001','12-JUN-04','S00001','F','N','20-JUL-02','in process'};
+insert into sales_order values{'O19002','C00002','25-JUN-04','S00002','P','N','27-JUN-02','in process'};
+insert into sales_order values{'O46865','C00003','18-FEB-04','S00003','F','Y','20-FEB-02','fulfilled'};
+insert into sales_order values{'O19003','C00001','03-APR-04','S00001','F','Y','07-APR-02','fulfilled'};
+insert into sales_order values{'O46866','C00004','20-MAY-04','S00002','P','N','22-JUL-02','fulfilled'};
+insert into sales_order values{'O19008','C00005','24-MAY-04','S00004','F','N','26-JUL-02','in process'};
 
-Address1
+create table sales_order_details
+(
+orderno VARCHAR(6) ,
+productno VARCHAR(6) ,
+qtyordered number(8),
+qtydisp number(8),
+productrate number(10,2),
+foreign key(orderno) references sales_order(orderno),
+foreign key(productno) references  product_master(Product_no));
 
-Address2
+insert into product_master values(
+'P00001','T-Shirts',5,'Piece',200,50,350,250);
+insert into product_master values(
+'P0345','Shirts',6,'Piece',150,50,500,350);
+insert into product_master values(
+'P06734','Cotton Jeans',5,'Piece',100,20,600,450);
+insert into product_master values(
+'P07865','Jeans',5,'Piece',100,20,850,550);
+insert into product_master values(
+'P07868','Trousers',2,'Piece',150,50,850,550);
+insert into product_master values(
+'P07885','Pull Overs',2.5,'Piece',80,30,700,450);
+insert into product_master values(
+'P07965','Denim Shirts',4,'Piece',100,40,350,250);
+insert into product_master values(
+'P07975','Lycra Tops',5,'Piece',70,30,300,175);
+insert into product_master values(
+'P08865','Skirts',5,'Piece',75,30,450,300);
 
-500001
+insert into salesman_master values(
+'S00001','Aman','A/14','Worli','Mumbai',40002,'Maharashtra',3000,100,50,'Good');
+insert into salesman_master values(
+'S00002','Omkar','65','Nariman','Mumbai',40001,'Maharashtra',3000,200,100,'Good');
+insert into salesman_master values(
+'S00003','Raj','P-7','Bandra','Mumbai',40032,'Maharashtra',3000,200,100,'Good');
+insert into salesman_master values(
+'S00004','Ashish','A-5','Juhu','Mumbai',40044,'Maharashtra',3500,200,150,'Good');
 
-Aman
 
-A/14
 
-Worli
+insert into sales_order values(
+'O19001','C00001','12-JUN-02',NULL,'S00001','F','N','20-JUL-04','IN PROCESS');
+insert into sales_order values(
+'O19002','C00002','25-JUN-04',NULL,'S00002','P','N','27-JUN-04','BACK ORDER');
+insert into sales_order values(
+'O46865','C00003','18-FEB-04',NULL,'S00003','F','Y','20-FEB-04','FULFILLED');
+insert into sales_order values(
+'O19003','C00001','03-APR-04',NULL,'S00001','F','Y','07-APR-02','FULFILLED');
+insert into sales_order values(
+'O46866','C00004','20-MAY-04',NULL,'S00002','P','N','22-MAY-04','BACK ORDER');
+insert into sales_order values(
+'O19008','C00005','24-MAY-04',NULL,'S00004','F','N','26-JUL-04','IN PROCESS');
 
-S00002
 
-Omkar
+insert into sales_order_details values(
+'O19001','P00001',4,4,525);
+insert into sales_order_details values(
+'O19001','P07965',2,1,8400);
+insert into sales_order_details values(
+'O19001','P07885',2,1,5250);
+insert into sales_order_details values(
+'O19002','P00001',10,0,525);
+insert into sales_order_details values(
+'O46865','P07868',3,3,3150);
+insert into sales_order_details values(
+'O46865','P07885',3,1,5250);
+insert into sales_order_details values(
+'O46865','P00001',10,10,525);
+insert into sales_order_details values(
+'O46865','P0345',4,4,1050);
+insert into sales_order_details values(
+'O19003','P03453',2,2,1050);
+insert into sales_order_details values(
+'O19003','P06734',1,1,12000);
+insert into sales_order_details values(
+'O46866','P07965',1,0,8400);
+insert into sales_order_details values(
+'O46866','P07975',1,0,1050);
+insert into sales_order_details values(
+'O19008','P00001',10,5,525);
+insert into sales_order_details values(
+'O19008','P07975',5,3,1050);
 
-65
+insert into  salesman_master values('S00001','Aman','A/14','Worli','Mumbai',400002,'Maharashtra',3000,100,50,'Good');
+insert into  salesman_master values('S00002','Omkar','65','Nariman','Mumbai',400001,'Maharashtra',3000,200,100,'Good');
+insert into  salesman_master values('S00003','Raj','P-7','Bandra','Mumbai',400032,'Maharashtra',3000,100,100,'Good');
+insert into  salesman_master values('S00004','Ashish','A/5','Juhu','Mumbai',400044,'Maharashtra',3500,200,150,'Good');
 
-Nariman
+insert into client_master values('C00001','Ivan Bayross','Mumbai',4000054,'Maharashtra',15000);
+insert into client_master values('C00002','Mamta Muzumdar','Madrasi',780001,'Tamil Nadu',0);
+insert into client_master values('C00003','Chhaya Bankar','Mumbai',4000057,'Maharashtra',5000);
+insert into client_master values('C00004','Ashwini Joshi','Bangalore',560001,'Karnataka',0);
+insert into client_master values('C00005','Hansel Colaco','Mumbai',4000050,'Maharashtra',2000)
+insert into client_master values('C00006','Deepak Sharma','Mangalore',5000050,'Karnataka',0);
 
-S00003 S00004
-
-Raj P-7 Ashish
-
-Bandra Juhu
-
-A/5
-
-City
-
-PinCode
+insert into client_master values('C00001','Ivan Bayross','Mumbai',4000054,'Maharashtra',15000);
+insert into client_master values('C00002','Mamta Muzumdar','Madrasi',780001,'Tamil Nadu',0);
+insert into client_master values('C00003','Chhaya Bankar','Mumbai',4000057,'Maharashtra',5000);
+insert into client_master values('C00004','Ashwini Joshi','Bangalore',560001,'Karnataka',0);
+insert into client_master values('C00005','Hansel Colaco','Mumbai',4000050,'Maharashtra',2000)
+insert into client_master values('C00006','Deepak Sharma','Mangalore',5000050,'Karnataka',0);
