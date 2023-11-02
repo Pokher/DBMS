@@ -1,0 +1,43 @@
+create table studentdetails(sid int,name varchar(20),address varchar(20));
+insert into studentdetails values(1,'Harini','Kolkata');
+insert into studentdetails values(2,'Manisha','Hyderabad');
+insert into studentdetails values(3,'Divya','Chennai');
+insert into studentdetails values(4,'Kushi','Mumbai');
+insert into studentdetails values(5,'Amitha','Bangalore');
+Create table StudentMarks
+(ID int, Name varchar(20), Marks int, Age int);
+Insert into StudentMarks
+values (1,'Harini',96,20);
+Insert into StudentMarks
+values (2,'Manisha',90,19);
+Insert into StudentMarks
+values (3,'Divya',94,21);
+Insert into StudentMarks
+values (4,'Kushi',92,19);
+Insert into StudentMarks
+values (5,'Amitha',95,21);
+
+Create view DetailsView AS
+Select *
+from studentdetails;
+
+Select * from DetailsView;
+
+Create view MarksView AS
+Select studentdetails.sid,studentdetails.name,studentdetails.address,StudentMarks.Marks,StudentMarks.Age
+from studentdetails
+full outer join StudentMarks ON studentdetails.sid=StudentMarks.ID;
+
+Select * from MarksView;
+
+DROP VIEW [viewName];
+
+
+
+
+Create view view_name
+select
+
+Select * from DetailsView;
+
+delete from view_name where name='Preity'
